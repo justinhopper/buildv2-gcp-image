@@ -2,22 +2,22 @@
 set -e
 
 echo "--- Initial package update"
-sudo apt-get update
+sudo DEBIAN_FRONTEND=noninteractive apt-get update
 
 echo "--- Install basic system tool packages"
-sudo apt-get install -y apt-transport-https curl gnupg2 software-properties-common
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y apt-transport-https curl gnupg2 software-properties-common
 
 echo "--- Add kubernetes repo"
-sudo /bin/bash -c 'echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" > /etc/apt/sources.list.d/kubernetes.list'
+sudo /bin/bash -c 'echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" > /etc/apt/sources.list.d/kubernetes.list'; echo "OK"
 
 echo "--- Import docker key"
 sudo curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
 
 echo "--- Add repo for docker"
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian xenial stable"; echo "OK"
 
 echo "--- Update package information"
-sudo apt update
+sudo DEBIAN_FRONTEND=noninteractive apt update
 
 echo "--- Install docker"
-sudo apt install -y docker-ce
+sudo DEBIAN_FRONTEND=noninteractive apt install -y docker-ce

@@ -24,7 +24,9 @@ jobs:
           at: ~/packer
       - run:
           name: Build base
-          command: packer build ./packer-config/base.json
+          command: |
+            echo "aws_access_key: $aws_access_key"
+            packer build ./packer-config/base.json
           no_output_timeout: 30m
       - persist_to_workspace:
           root: .

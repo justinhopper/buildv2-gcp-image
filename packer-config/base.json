@@ -8,8 +8,8 @@
   ],
   "builders": [{
     "type": "amazon-ebs",
-    "access_key": "{{user `aws_access_key`}}",
-    "secret_key": "{{user `aws_secret_key`}}",
+    "access_key": "{{env `AWS_ACCESS_KEY`}}",
+    "secret_key": "{{env `AWS_SECRET_KEY`}}",
     "region": "us-east-1",
     "vpc_id": "vpc-1179c777",
     "subnet_id": "subnet-55620a0e",

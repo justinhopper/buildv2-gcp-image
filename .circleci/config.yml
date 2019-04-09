@@ -15,6 +15,11 @@ jobs:
     working_directory: ~/packer
     steps:
       - checkout
+      - run:
+          name: "Setup AWS environment variables"
+          command: |
+            echo 'export AWS_ACCESS_KEY=${"aws_access_key"}' >> $BASH_ENV
+            echo 'export AWS_SECRET_KEY=${"aws_secret_key"}' >> $BASH_ENV
       - attach_workspace:
           at: ~/packer
       - run:
@@ -29,7 +34,7 @@ jobs:
           path: manifest-base.json
 workflows:
   version: 2
-  build-and-deploy:
+  validate-and-build:
     jobs:
       - validate
       - build-base:

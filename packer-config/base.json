@@ -1,7 +1,7 @@
 {
   "variables": {
-    "aws_access_key": "{{env `AWS_ACCESS_KEY`}}",
-    "aws_secret_key": "{{env `AWS_SECRET_KEY`}}"
+    "aws_access_key": "{{env `aws_access_key`}}",
+    "aws_secret_key": "{{env `aws_secret_key`}}"
   },
   "sensitive-variables": ["my_seaws_access_keycret", "aws_secret_key"],
   "_readme": [

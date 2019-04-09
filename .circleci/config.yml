@@ -19,7 +19,6 @@ jobs:
           name: "Setup AWS environment variables"
           command: |
             echo "aws_access_key: $aws_access_key"
-            echo "AWS_ACCESS_KEY: $AWS_ACCESS_KEY"
       - attach_workspace:
           at: ~/packer
       - run:

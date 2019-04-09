@@ -3,14 +3,14 @@
     "aws_access_key": "{{env `aws_access_key`}}",
     "aws_secret_key": "{{env `aws_secret_key`}}"
   },
-  "sensitive-variables": ["my_seaws_access_keycret", "aws_secret_key"],
+  "sensitive-variables": ["aws_access_key", "aws_secret_key"],
   "_readme": [
     "NetApp Buildv2 image test build"
   ],
   "builders": [{
     "type": "amazon-ebs",
-    "access_key": "{{user `AWS_ACCESS_KEY`}}",
-    "secret_key": "{{user `AWS_SECRET_KEY`}}",
+    "access_key": "{{user `aws_access_key`}}",
+    "secret_key": "{{user `aws_secret_key`}}",
     "region": "us-east-1",
     "vpc_id": "vpc-1179c777",
     "subnet_id": "subnet-55620a0e",

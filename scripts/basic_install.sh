@@ -11,7 +11,7 @@ echo "--- Add kubernetes repo"
 sudo /bin/bash -c 'echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" > /etc/apt/sources.list.d/kubernetes.list'; echo "OK"
 
 echo "--- Import docker key"
-sudo curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
 echo "--- Add repo for docker"
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian xenial stable"; echo "OK"

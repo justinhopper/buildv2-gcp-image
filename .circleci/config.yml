@@ -18,8 +18,6 @@ jobs:
       - run:
           name: "Setup AWS environment variables"
           command: |
-            echo 'export AWS_ACCESS_KEY=${"aws_access_key"}' >> $BASH_ENV
-            echo 'export AWS_SECRET_KEY=${"aws_secret_key"}' >> $BASH_ENV
             echo "aws_access_key: $aws_access_key"
             echo "AWS_ACCESS_KEY: $AWS_ACCESS_KEY"
       - attach_workspace:
@@ -28,6 +26,8 @@ jobs:
           name: Build base
           command: packer build ./packer-config/base.json
           no_output_timeout: 30m
+          environment:
+            AWS_ACCESS_KEY=$aws_access_key
       - persist_to_workspace:
           root: .
           paths:

@@ -2,10 +2,13 @@
 set -e
 
 echo "--- Initial package update"
-sudo DEBIAN_FRONTEND=noninteractive apt-get update
+sudo DEBIAN_FRONTEND=noninteractive apt update
+
+echo "--- Initial package update install"
+sudo DEBIAN_FRONTEND=noninteractive apt install -y update
 
 echo "--- Install basic system tool packages"
-sudo DEBIAN_FRONTEND=noninteractive apt-get install -y apt-transport-https curl gnupg2 software-properties-common
+sudo DEBIAN_FRONTEND=noninteractive apt install -y apt-transport-https curl gnupg2 software-properties-common
 
 echo "--- Add kubernetes repo"
 sudo /bin/bash -c 'echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" > /etc/apt/sources.list.d/kubernetes.list'; echo "OK"

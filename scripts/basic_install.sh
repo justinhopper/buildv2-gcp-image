@@ -8,7 +8,7 @@ echo "--- Install basic system tool packages"
 sudo apt-get install -y apt-transport-https curl gnupg2 software-properties-common
 
 echo "--- Add kubernetes repo"
-sudo echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" > /etc/apt/sources.list.d/kubernetes.list
+sudo /bin/bash -c 'echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" > /etc/apt/sources.list.d/kubernetes.list'
 
 echo "--- Import docker key"
 sudo curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -

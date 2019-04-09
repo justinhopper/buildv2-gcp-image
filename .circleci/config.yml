@@ -15,17 +15,11 @@ jobs:
     working_directory: ~/packer
     steps:
       - checkout
-      - run:
-          name: "Setup AWS environment variables"
-          command: |
-            echo "aws_access_key: $aws_access_key"
       - attach_workspace:
           at: ~/packer
       - run:
           name: Build base
-          command: |
-            echo "aws_access_key: $aws_access_key"
-            packer build ./packer-config/base.json
+          command: packer build ./packer-config/base.json
           no_output_timeout: 30m
       - persist_to_workspace:
           root: .

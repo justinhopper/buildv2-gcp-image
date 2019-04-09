@@ -26,8 +26,6 @@ jobs:
           name: Build base
           command: packer build ./packer-config/base.json
           no_output_timeout: 30m
-          environment:
-            AWS_ACCESS_KEY=$aws_access_key
       - persist_to_workspace:
           root: .
           paths:

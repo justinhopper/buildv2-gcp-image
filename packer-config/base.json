@@ -28,7 +28,8 @@
     },
     "instance_type": "t2.micro",
     "ssh_username": "ubuntu",
-    "ami_name": "packer-jhopper {{timestamp}}"
+    "ami_name": "packer-jhopper-test",
+    "user_data_file": "user_data_file.txt"
   }],
   "provisioners": [
     {

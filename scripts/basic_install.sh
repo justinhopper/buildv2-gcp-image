@@ -5,7 +5,7 @@ echo "--- Initial package update"
 sudo DEBIAN_FRONTEND=noninteractive apt update
 
 echo "--- Initial package update install"
-sudo DEBIAN_FRONTEND=noninteractive apt upgrade
+sudo DEBIAN_FRONTEND=noninteractive apt upgrade -y
 
 echo "--- Install basic system tool packages"
 sudo DEBIAN_FRONTEND=noninteractive apt install -y apt-transport-https curl gnupg2 software-properties-common
@@ -27,3 +27,6 @@ sudo DEBIAN_FRONTEND=noninteractive apt update
 
 echo "--- Install docker"
 sudo DEBIAN_FRONTEND=noninteractive apt install -y docker-ce
+
+echo "--- Install kubeadm, kubectl, kubelet"
+sudo DEBIAN_FRONTEND=noninteractive apt install -y kubeadm=1.14.0-00 kubelet=1.14.0-00 kubectl=1.14.0-00

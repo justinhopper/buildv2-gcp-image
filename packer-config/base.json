@@ -14,7 +14,7 @@
     "region": "us-east-1",
     "vpc_id": "vpc-1179c777",
     "subnet_id": "subnet-55620a0e",
-    "security_group_id": "sg-007eecf8d0bb10aac",
+    "security_group_id": "sg-0298ccefad9b0217f",
     "ssh_interface": "public_ip",
     "associate_public_ip_address": "true",
     "source_ami_filter": {

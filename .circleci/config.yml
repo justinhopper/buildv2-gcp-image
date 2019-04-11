@@ -15,18 +15,10 @@ jobs:
     working_directory: ~/packer
     steps:
       - checkout
-      - attach_workspace:
-          at: ~/packer
       - run:
           name: Build base
           command: packer build ./packer-config/base.json
           no_output_timeout: 30m
-      - persist_to_workspace:
-          root: .
-          paths:
-            - manifest-base.json
-      - store_artifacts:
-          path: manifest-base.json
 workflows:
   version: 2
   validate-and-build:

@@ -28,5 +28,21 @@ sudo DEBIAN_FRONTEND=noninteractive apt update
 echo "--- Install docker"
 sudo DEBIAN_FRONTEND=noninteractive apt install -y docker-ce
 
+echo "--- Update docker daemon"
+echo '{"exec-opts": ["native.cgroupdriver=systemd"],"log-driver": "json-file","log-opts": {"max-size": "100m"},"storage-driver": "overlay2"}' | sudo tee /etc/docker/daemon.json
+
+echo "--- Restart docker"
+sudo systemctl restart docker
+
 echo "--- Install kubeadm, kubectl, kubelet"
 sudo DEBIAN_FRONTEND=noninteractive apt install -y kubeadm=1.14.0-00 kubelet=1.14.0-00 kubectl=1.14.0-00
+
+echo "--- Moving kubeadm files into /etc/kubernetes"
+sudo mv /tmp/kubeadm-version-only.conf /etc/kubernetes/kubeadm-version-only.conf
+sudo mv /tmp/kubeadm.conf /etc/kubernetes/kubeadm.conf
+
+echo "--- Pre-pulling kubeadm images"
+sudo kubeadm config images pull --config /etc/kubernetes/kubeadm-version-only.conf
+
+echo "--- Download calico yaml"
+wget https://docs.projectcalico.org/v2.0/getting-started/kubernetes/installation/hosted/calico.yaml

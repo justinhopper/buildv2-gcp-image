@@ -1,40 +1,31 @@
 {
-  "variables": {
-    "aws_access_key": "{{env `aws_access_key`}}",
-    "aws_secret_key": "{{env `aws_secret_key`}}"
-  },
-  "sensitive-variables": ["aws_access_key", "aws_secret_key"],
   "_readme": [
     "NetApp Buildv2 image test build"
   ],
   "builders": [{
-    "type": "amazon-ebs",
-    "access_key": "{{user `aws_access_key`}}",
-    "secret_key": "{{user `aws_secret_key`}}",
-    "region": "us-east-1",
-    "vpc_id": "vpc-1179c777",
-    "subnet_id": "subnet-55620a0e",
-    "security_group_id": "sg-0298ccefad9b0217f",
-    "ssh_interface": "public_ip",
-    "associate_public_ip_address": "true",
-    "source_ami_filter": {
-      "filters": {
-        "virtualization-type": "hvm",
-        "name": "ubuntu/images/*ubuntu-xenial-16.04-amd64-server-*",
-        "root-device-type": "ebs"
-      },
-      "owners": ["099720109477"],
-      "most_recent": true
-    },
-    "instance_type": "t2.micro",
-    "ssh_username": "ubuntu",
-    "ami_name": "packer-jhopper-{{timestamp}}",
-    "user_data_file": "user_data_file.txt"
+    "type": "googlecompute",
+    "account_file": "account.json",
+    "region": "us-west1-c",
+    "zone": "us-west1-c",
+    "project_id": "hello-reykjavik",
+    "source_image_family": "ubuntu-minimal-1604-lts",
+    "ssh_username": "packer",
+    "image_licenses": ["projects/vm-options/global/licenses/enable-vmx"]
   }],
   "provisioners": [
     {
+      "type": "file",
+      "source": "file_templates/kubeadm-version-only.conf",
+      "destination": "/tmp/kubeadm-version-only.conf"
+    },
+    {
+      "type": "file",
+      "source": "file_templates/kubeadm.conf",
+      "destination": "/tmp/kubeadm.conf"
+    },    
+    {
       "scripts": [
-        "./scripts/basic_install.sh"
+        "./scripts/install_kube_components.sh"
       ],
       "type": "shell"
     }

@@ -1,10 +1,10 @@
 apiVersion: kubeadm.k8s.io/v1beta1
 kind: InitConfiguration
 localAPIEndpoint:
-  advertiseAddress: 10.138.15.230
-  bindPort: 6443
+  advertiseAddress: ##private_ip##
+  bindPort: ##api_port##
 nodeRegistration:
-  name: nks-test-cluster-master-1
+  name: ##node_name##
   criSocket: /var/run/dockershim.sock
   taints:
   - effect: NoSchedule
@@ -13,18 +13,18 @@ nodeRegistration:
 apiVersion: kubeadm.k8s.io/v1beta1
 kind: ClusterConfiguration
 kubernetesVersion: 1.14.0
-clusterName: nks-test-cluster
+clusterName: ##cluster_name##
 certificatesDir: /etc/kubernetes/pki
-controlPlaneEndpoint: 10.138.15.230
+controlPlaneEndpoint: ##private_ip##
 networking:
   dnsDomain: cluster.local
-  podSubnet: 192.168.0.0/16
-  serviceSubnet: 10.96.0.0/12
+  podSubnet: ##pod_cidr##
+  serviceSubnet: ##service_cidr##
 apiServer:
   certSANs:
   - 127.0.0.1
-  - 10.138.15.230
-  - 34.83.117.36
+  - ##private_ip##
+  - ##loadbalancer_ip##
   extraArgs:
     cloud-provider: 'gce'
     cloud-config: /etc/kubernetes/gce-cloud.conf

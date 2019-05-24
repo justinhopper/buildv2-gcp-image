@@ -20,8 +20,8 @@
     },
     {
       "type": "file",
-      "source": "file_templates/kubeadm.conf",
-      "destination": "/tmp/kubeadm.conf"
+      "source": "file_templates/kubeadm.conf.template",
+      "destination": "/tmp/kubeadm.conf.template"
     },    
     {
       "scripts": [
